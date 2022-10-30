@@ -68,7 +68,7 @@ Wymaganiem do tworzenia niestandardowych łączy jest posiadanie konta użytkown
 
 **Walidacja danych**
 
-W przypadku obu warstw aplikacji występuję walidacja danych, która polega na weryfiakcji zgodności wprowadzanych adresów URL ze wzorcem - wprowadzony adres musi być poprawny. 
+W przypadku obu warstw aplikacji występuję walidacja danych, która polega na weryfikacji zgodności wprowadzanych adresów URL ze wzorcem - wprowadzony adres musi być poprawny. 
 
-Walidacja danych dotyczy również rejestracji i logowania, wprowadzane dane muszą być poprawne.
+Walidacja danych dotyczy również rejestracji i logowania - wprowadzane dane muszą być poprawne.
 
