@@ -6,34 +6,48 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import ErrorPage from "./error-page";
 import Dashboard from "./routes/dashboard";
 import DashboardIndex from "./routes/dashboard/index";
-import Login from './routes/login';
+import RegisterPage, {action as registerAction } from './routes/register';
+import LoginPage, { action as loginAction } from './routes/login';
+import IndexPage, {loader as indexLoader} from './routes/index'
+
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Root />,
-        errorElement: <ErrorPage />,
+        element: <Root/>,
+        errorElement: <ErrorPage/>,
         children: [
             {
+                index: true,
+                element: <IndexPage/>,
+                loader: indexLoader
+            },
+            {
+                path: 'register',
+                element: <RegisterPage/>,
+                action: registerAction,
+            },
+            {
+                path: 'login',
+                element: <LoginPage />,
+                action: loginAction,
+            },
+            {
                 path: 'dashboard',
-                element: <Dashboard />,
+                element: <Dashboard/>,
                 children: [
                     {
                         index: true,
-                        element: <DashboardIndex />
+                        element: <DashboardIndex/>
                     }
                 ]
             }
         ]
     },
-    {
-        path: 'login',
-        element: <Login />,
-    }
 ])
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
+    <React.StrictMode>
+        <RouterProvider router={router}/>
+    </React.StrictMode>,
 )
