@@ -29,7 +29,7 @@ namespace backend.Controllers
 
         // GET: api/Links/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Link>> GetLink(long id)
+        public async Task<ActionResult<Link>> GetLink(int id)
         {
             var link = await _context.Links.FindAsync(id);
 
@@ -42,9 +42,8 @@ namespace backend.Controllers
         }
 
         // PUT: api/Links/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutLink(long id, Link link)
+        public async Task<IActionResult> PutLink(int id, Link link)
         {
             if (id != link.Id)
             {
@@ -85,7 +84,7 @@ namespace backend.Controllers
 
         // DELETE: api/Links/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteLink(long id)
+        public async Task<IActionResult> DeleteLink(int id)
         {
             var link = await _context.Links.FindAsync(id);
             if (link == null)
@@ -99,7 +98,7 @@ namespace backend.Controllers
             return NoContent();
         }
 
-        private bool LinkExists(long id)
+        private bool LinkExists(int id)
         {
             return _context.Links.Any(e => e.Id == id);
         }
