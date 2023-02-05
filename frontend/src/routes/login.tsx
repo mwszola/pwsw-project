@@ -1,8 +1,31 @@
-import { Form, Link } from "react-router-dom";
+import { Form, Link, redirect } from "react-router-dom";
+import { API_ENDPOINT_BASE_URL } from "../api/config";
+import localforage from "localforage";
 
-export async function action() {
-  // TODO: Impl login logic
-  return null;
+export async function action({ request }) {
+  const formData = await request.formData();
+
+  const username = formData.get("username");
+  const password = formData.get("password");
+
+  const response = await fetch(`${API_ENDPOINT_BASE_URL}/token`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username,
+      password,
+    }),
+  });
+
+  if (!response.ok) {
+    throw response;
+  }
+
+  await localforage.setItem("username", username);
+
+  return redirect("/dashboard");
 }
 
 export default function LoginPage() {
@@ -33,10 +56,10 @@ export default function LoginPage() {
             </span>
 
             <input
-              type="email"
-              name="email"
+              type="text"
+              name="username"
               className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              placeholder="Adres e-mail"
+              placeholder="Nazwa użytkownika"
             />
           </div>
 

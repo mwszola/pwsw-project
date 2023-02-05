@@ -1,8 +1,25 @@
-import { Form, Link } from "react-router-dom";
+import { Form, Link, redirect } from "react-router-dom";
+import { API_ENDPOINT_BASE_URL } from "../api/config";
 
-export async function action() {
-  // TODO: Impl register logic
-  return null;
+export async function action({ request }) {
+  const formData = await request.formData();
+
+  const response = await fetch(`${API_ENDPOINT_BASE_URL}/users`, {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: formData.get("username"),
+      password: formData.get("password"),
+    }),
+  });
+
+  if (!response.ok) {
+    throw response;
+  }
+
+  return redirect("/dashboard");
 }
 
 export default function RegisterPage() {
@@ -22,7 +39,7 @@ export default function RegisterPage() {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                stroke-width="2"
+                strokeWidth="2"
               >
                 <path
                   strokeLinecap="round"
@@ -33,10 +50,10 @@ export default function RegisterPage() {
             </span>
 
             <input
-              type="email"
-              name="email"
+              type="text"
+              name="username"
               className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              placeholder="Adres e-mail"
+              placeholder="Nazwa użytkownika"
             />
           </div>
 

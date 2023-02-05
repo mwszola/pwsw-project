@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Outlet, useLoaderData } from "react-router-dom";
+import { Form, Link, Outlet, useLoaderData } from "react-router-dom";
 import { API_ENDPOINT_BASE_URL } from "../api/config";
 import type { ApiLink } from "../api/types";
 
@@ -24,22 +24,28 @@ export default function Dashboard() {
                 Linki
               </h2>
 
-              <button className="p-0.5 hover:bg-gray-100 duration-200 transition-colors text-gray-500 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 border rounded-lg">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-4 h-4"
+              <Form action="new">
+                <button
+                  type="submit"
+                  className="p-0.5 hover:bg-gray-100 duration-200 transition-colors text-gray-500 dark:border-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 border rounded-lg"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 4.5v15m7.5-7.5h-15"
-                  />
-                </svg>
-              </button>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-4 h-4"
+                    aria-label="Create new link"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                </button>
+              </Form>
             </div>
 
             <nav className="mt-4 -mx-3 space-y-3 ">
@@ -60,7 +66,7 @@ export default function Dashboard() {
         </div>
       </aside>
 
-      <div>
+      <div className="flex-1 flex justify-center items-center">
         <Outlet />
       </div>
     </main>
