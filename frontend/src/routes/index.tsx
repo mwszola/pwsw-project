@@ -29,7 +29,6 @@ export async function action({ request }) {
     body: JSON.stringify({
       originalUrl,
       urlAlias: randomLinkId,
-      // TODO: Update
       owner: {
         id: Math.floor(Math.random() * 10000).toString(),
         username: "mateusz",

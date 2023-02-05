@@ -23,7 +23,10 @@ export async function action({ request }) {
     throw response;
   }
 
+  const accessToken = await response.text();
+
   await localforage.setItem("username", username);
+  await localforage.setItem("accessToken", accessToken);
 
   return redirect("/dashboard");
 }

@@ -12,7 +12,6 @@ export async function action({ request }) {
     body: JSON.stringify({
       originalUrl: formData.get("originalUrl"),
       urlAlias: formData.get("urlAlias"),
-      // TODO: Temporarily hardcoded :-)
       owner: {
         id: Math.floor(Math.random() * 10000).toString(),
         username: "mateusz",
