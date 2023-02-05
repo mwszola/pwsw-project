@@ -4,7 +4,7 @@ import Root from "./routes/root";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./error-page";
-import Dashboard from "./routes/dashboard";
+import Dashboard, { loader as dashboardRootLoader } from "./routes/dashboard";
 import DashboardIndex from "./routes/dashboard/index";
 import RegisterPage, { action as registerAction } from "./routes/register";
 import LoginPage, { action as loginAction } from "./routes/login";
@@ -34,6 +34,7 @@ const router = createBrowserRouter([
       {
         path: "dashboard",
         element: <Dashboard />,
+        loader: dashboardRootLoader,
         children: [
           {
             index: true,
