@@ -15,7 +15,7 @@ export async function loader({ params }) {
 export default function LinkView() {
   const data = useLoaderData();
 
-  const destUrl = `https://localhost:7120/r/${data.urlAlias}`;
+  const destUrl = `http://localhost:5173/r/${data.urlAlias}`;
 
   console.log("data", data);
   return (
